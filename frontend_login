@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Animated Login Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #d3cce3, #e9e4f0);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
+      animation: slideDown 1s ease forwards;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 16px;
+      color: #444;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #6c63ff;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after { width: 100%; }
+    nav a:hover { color: #6c63ff; }
+
+    /* Main Container */
+    .container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .card {
+      display: flex;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      max-width: 900px;
+      width: 100%;
+      padding: 40px;
+      transform: scale(0.9);
+      animation: popUp 1s ease forwards;
+    }
+
+    /* Left Side - Login */
+    .login-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+      animation: slideFromLeft 1.2s ease;
+    }
+
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #6c63ff;
+      position: relative;
+      animation: textShadowMove 3s ease-in-out infinite;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border: 1.5px solid #ccc;
+      border-radius: 30px;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    .login-box input:focus {
+      border: 1.5px solid #6c63ff;
+      box-shadow: 0 0 10px rgba(108,99,255,0.3);
+    }
+
+    .login-box a {
+      font-size: 14px;
+      color: #6c63ff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 15px;
+      text-align: right;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      background: #6c63ff;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .login-box button:hover {
+      background: #574bdb;
+      transform: translateY(-3px);
+    }
+
+    .login-box .create {
+      margin-top: 15px;
+      text-align: center;
+      color: #444;
+      font-size: 14px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .login-box .create:hover { color: #6c63ff; }
+
+    /* Right Side - Custom Illustration Split */
+    .illustration {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .illustration img {
+      position: absolute;
+      max-width: 200px;
+    }
+
+    .person { bottom: 0; animation: floatY 4s ease-in-out infinite; }
+    .leaf1 { left: 20px; bottom: 0; animation: sway 5s ease-in-out infinite; }
+    .leaf2 { right: 20px; bottom: 10px; animation: sway 6s ease-in-out infinite reverse; }
+    .paper-plane { top: 0; animation: fly 6s linear infinite; }
+
+    /* Animations */
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    @keyframes slideDown { from {transform: translateY(-100%); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+    @keyframes slideFromLeft { from {transform: translateX(-100px); opacity: 0;} to {transform: translateX(0); opacity: 1;} }
+    @keyframes popUp { from {transform: scale(0.9); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+
+    @keyframes floatY { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
+    @keyframes sway { 0%, 100% {transform: rotate(0deg);} 50% {transform: rotate(5deg);} }
+    @keyframes fly { 0% {transform: translateX(-200px) translateY(0);} 50% {transform: translateX(100px) translateY(-40px);} 100% {transform: translateX(-200px) translateY(0);} }
+
+    @keyframes textShadowMove {
+      0% {text-shadow: 2px 2px 5px rgba(0,0,0,0.2);} 
+      50% {text-shadow: -2px -2px 5px rgba(0,0,0,0.3);} 
+      100% {text-shadow: 2px 2px 5px rgba(0,0,0,0.2);} 
+    }
+
+    @media(max-width: 768px) {
+      .card { flex-direction: column; align-items: center; text-align: center; }
+      .illustration { margin-top: 250px; min-height: 250px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="#">HOME</a>
+    <a href="#">SERVICES</a>
+    <a href="#">ABOUT US</a>
+    <a href="#">CONTACT US</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="card">
+      <!-- Login Box -->
+      <div class="login-box">
+        <h2>WELCOME!</h2>
+        <input type="text" placeholder="USERNAME">
+        <input type="password" placeholder="PASSWORD">
+        <a href="#">Forgot Password?</a>
+        <button>LOGIN</button>
+        <div class="create">CREATE ACCOUNT</div>
+      </div>
+
+      <!-- Illustration Split -->
+      <div class="illustration">
+        <img src="paper-plane-1.png" alt="Paper Plane" class="paper-plane">
+        <img src="https://img.icons8.com/color/200/000000/leaf.png" alt="Leaf" class="leaf1">
+        <img src="https://img.icons8.com/color/200/000000/leaf.png" alt="Leaf" class="leaf2">
+        <img src="https://img.icons8.com/color/200/000000/student-male--v2.png" alt="Person" class="person">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector("button").addEventListener("click", function(){
+      alert("Login button clicked!");
+    });
+  </script>
+
+</body>
+</html>
